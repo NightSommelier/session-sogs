@@ -148,7 +148,9 @@ def load_config():
             'active_prune_threshold': ('ROOM_ACTIVE_PRUNE_THRESHOLD', None, days_to_seconds),
         },
         'direct_messages': {'expiry': ('DM_EXPIRY', None, days_to_seconds)},
-        'users': {'require_blind_keys': bool_opt('REQUIRE_BLIND_KEYS')},
+        'users': {
+            'require_blind_keys': bool_opt('REQUIRE_BLIND_KEYS'),
+        },
         'messages': {
             'history_prune_threshold': ('MESSAGE_HISTORY_PRUNE_THRESHOLD', None, days_to_seconds),
             'profanity_filter': bool_opt('PROFANITY_FILTER'),

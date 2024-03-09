@@ -93,6 +93,7 @@ def send_inbox(sid):
     404 Not Found — if the given Session ID does not exist on this server, either because they have
     never accessed the server, or because they have been permanently banned.
     """
+    # global config
     try:
         recip_user = User(session_id=sid, autovivify=False)
     except NoSuchUser:
