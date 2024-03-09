@@ -65,10 +65,10 @@
 
 
 ; The maximum size of files we accept, in bytes.  Note that onion requests impose a maximum size of
-; messages, and so this should not be larger than 6MB, but can be reduced to not accept larger files
+; messages, and so this should not be larger than 10MB, but can be reduced to not accept larger files
 ; in open groups.  Value is in bytes.
 ;
-;max_size = 6000000
+;max_size = 10000000
 
 
 [rooms]
@@ -134,6 +134,12 @@
 ; default is no, that is, mods and admins messages are not filtered by default.
 ;
 ;filter_mods = no
+
+
+; Blocking personal messages from users to users.
+; Admins and moderators are excluded from this parameter.
+;
+dm_blocked = no
 
 
 ; The profanity and alphabet filters can be controlled on a per-room setting (which overrides the

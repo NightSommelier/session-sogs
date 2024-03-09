@@ -1,4 +1,4 @@
-from .. import db, http, utils
+from .. import db, http, utils, config
 from ..model.exc import NoSuchUser
 from ..model.user import User
 from ..model.message import Message
@@ -100,6 +100,10 @@ def send_inbox(sid):
 
     if recip_user.banned:
         abort(http.NOT_FOUND)
+    
+    if config.DM_BLOCKED:
+        if not any([recip_user.global_admin, recip_user.global_moderator]):
+            abort(http.NOT_FOUND)
 
     req = request.json
     message = req.get('message')
