@@ -136,6 +136,12 @@
 ;filter_mods = no
 
 
+; Blocking personal messages from users to users.
+; Admins and moderators are excluded from this parameter.
+;
+dm_blocked = no
+
+
 ; The profanity and alphabet filters can be controlled on a per-room setting (which overrides the
 ; global default set above) and can have automated responses sent by the SOGS server.  For details
 ; and examples see the sogs.ini.filter-sample file.

@@ -23,7 +23,7 @@ UPLOAD_DEFAULT_EXPIRY = 15 * 86400.0  # Seconds (or None), but specified in conf
 UPLOAD_FILENAME_MAX = 60
 UPLOAD_FILENAME_KEEP_PREFIX = 40
 UPLOAD_FILENAME_KEEP_SUFFIX = 17
-UPLOAD_FILE_MAX_SIZE = 10_000_000
+UPLOAD_FILE_MAX_SIZE = 6_000_000
 UPLOAD_FILENAME_BAD = re.compile(r"[^\w+\-.'()@\[\]]+")
 ROOM_ACTIVE_PRUNE_THRESHOLD = 60 * 86400.0  # Seconds, but specified in config file as days
 ROOM_DEFAULT_ACTIVE_THRESHOLD = 7 * 86400.0  # Seconds, but specified in config file as days
@@ -39,6 +39,7 @@ REQUIRE_BLIND_KEYS = True
 TEMPLATE_PATH = 'templates'
 STATIC_PATH = 'static'
 UPLOAD_PATH = 'uploads'
+DM_BLOCKED = False
 ROOM_OVERRIDES = {}
 FILTER_SETTINGS = {}
 
@@ -147,7 +148,9 @@ def load_config():
             'active_prune_threshold': ('ROOM_ACTIVE_PRUNE_THRESHOLD', None, days_to_seconds),
         },
         'direct_messages': {'expiry': ('DM_EXPIRY', None, days_to_seconds)},
-        'users': {'require_blind_keys': bool_opt('REQUIRE_BLIND_KEYS')},
+        'users': {
+            'require_blind_keys': bool_opt('REQUIRE_BLIND_KEYS'),
+        },
         'messages': {
             'history_prune_threshold': ('MESSAGE_HISTORY_PRUNE_THRESHOLD', None, days_to_seconds),
             'profanity_filter': bool_opt('PROFANITY_FILTER'),
@@ -156,6 +159,7 @@ def load_config():
             'alphabet_filters': ('ALPHABET_FILTERS', None, set_of_strs),
             'alphabet_silent': bool_opt('ALPHABET_SILENT'),
             'filter_mods': bool_opt('FILTER_MODS'),
+            'dm_blocked': bool_opt('DM_BLOCKED'),
         },
         'web': {
             'template_path': ('TEMPLATE_PATH', path_exists, val_or_none),
