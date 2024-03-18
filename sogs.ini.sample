@@ -136,10 +136,29 @@
 ;filter_mods = no
 
 
-; Blocking personal messages from users to users.
-; Admins and moderators are excluded from this parameter.
+; Blocking messages from users to users within the room.
+; Admins/moderators are excluded from the block list by default.
+; Default value: no.
 ;
-dm_blocked = no
+; Note: These settings work with all rooms. Be careful when using them.
+;
+dm_default_blocked = yes
+
+
+; Blocking messages from moderators/admins to users?
+;
+; Note: These settings work with all rooms. Be careful when using them.
+; Default value: no.
+;
+dm_blocked_moderator = no
+
+
+; Blocking messages from users to moderators/admins?
+;
+; Note: These settings work with all rooms. Be careful when using them.
+; Default value: no.
+;
+dm_blocked_user = no
 
 
 ; The profanity and alphabet filters can be controlled on a per-room setting (which overrides the

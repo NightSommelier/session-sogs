@@ -101,10 +101,31 @@ def send_inbox(sid):
 
     if recip_user.banned:
         abort(http.NOT_FOUND)
-    
-    if config.DM_BLOCKED:
-        if not any([recip_user.global_admin, recip_user.global_moderator]):
-            abort(http.NOT_FOUND)
+
+    if config.DM_DEFAULT_BLOCKED:
+        sender_user: User = g.user
+        is_sender_moderator = any([
+            sender_user.global_admin,
+            sender_user.global_moderator
+        ])
+        is_recipient_moderator = any([
+            recip_user.global_admin,
+            recip_user.global_moderator
+        ])
+
+        if (
+            config.DM_BLOCKED_MODERATOR and is_sender_moderator
+        ) and not is_recipient_moderator:
+            abort(http.BAD_REQUEST)
+
+        elif not is_sender_moderator and \
+        (
+            config.DM_BLOCKED_USER and is_recipient_moderator
+        ):
+            abort(http.BAD_REQUEST)
+
+        elif not is_sender_moderator and not is_recipient_moderator:
+            abort(http.BAD_REQUEST)
 
     req = request.json
     message = req.get('message')

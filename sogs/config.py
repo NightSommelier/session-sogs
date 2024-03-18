@@ -39,7 +39,9 @@ REQUIRE_BLIND_KEYS = True
 TEMPLATE_PATH = 'templates'
 STATIC_PATH = 'static'
 UPLOAD_PATH = 'uploads'
-DM_BLOCKED = False
+DM_DEFAULT_BLOCKED = False
+DM_BLOCKED_MODERATOR = False
+DM_BLOCKED_USER = True
 ROOM_OVERRIDES = {}
 FILTER_SETTINGS = {}
 
@@ -159,7 +161,9 @@ def load_config():
             'alphabet_filters': ('ALPHABET_FILTERS', None, set_of_strs),
             'alphabet_silent': bool_opt('ALPHABET_SILENT'),
             'filter_mods': bool_opt('FILTER_MODS'),
-            'dm_blocked': bool_opt('DM_BLOCKED'),
+            'dm_default_blocked': bool_opt('DM_DEFAULT_BLOCKED'),
+            'dm_blocked_moderator': bool_opt('DM_BLOCKED_MODERATOR'),
+            'dm_blocked_user': bool_opt('DM_BLOCKED_USER'),
         },
         'web': {
             'template_path': ('TEMPLATE_PATH', path_exists, val_or_none),
